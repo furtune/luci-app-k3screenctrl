@@ -5,9 +5,9 @@ STOP=99
 
 status=$(pidof k3screenctrl)
 
-if [ ! -x /lib/k3screenctrl/* ]; then
-  chmod -R +x /lib/k3screenctrl
-fi
+for i in /lib/k3screenctrl/*; do
+  [ ! -x $i ]&&chmod +x $i
+done
 
 if [ ! -x /usr/bin/k3screenctrl ]; then
   chmod +x /usr/bin/k3screenctrl
