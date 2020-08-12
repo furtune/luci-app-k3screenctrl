@@ -109,6 +109,7 @@ jobs:
         echo "编译 k3screenctrl ..."
         git clone https://github.com/shenzt68/Szt-k3screenctrl-new ../k3screenctrl
         cd ../k3screenctrl
+        autoreconf -f -i -v
         ./configure --host=${target_host}
         make -j${cores:=1}
         ${target_host}-strip src/k3screenctrl
