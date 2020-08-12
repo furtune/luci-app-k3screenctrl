@@ -56,15 +56,6 @@ endef
 define Package/$(PKG_NAME)/postinst
 #!/bin/sh
 if [ -z "$${IPKG_INSTROOT}" ]; then
-  #for i in /lib/k3screenctrl/*; do
-    #[ -f $i -a ! -x $i ]&&chmod +x $i
-    #chmod +x $i
-  #done
-
-  #for i in /etc/init.d/k3screenctrl /usr/bin/k3screenctrl; do
-    #[ -f $i -a ! -x $i ]&&chmod +x $i
-    #chmod +x $i
-  #done
   chmod +x /etc/init.d/k3screenctrl
   chmod +x /usr/bin/k3screenctrl
   chmod -R +x /lib/k3screenctrl
