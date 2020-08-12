@@ -5,16 +5,6 @@ STOP=99
 
 status=$(pidof k3screenctrl)
 
-#for i in /lib/k3screenctrl/*; do
-  #[ -f $i -a ! -x $i ]&&chmod +x $i
-  #chmod +x $i
-#done
-
-#for i in /etc/init.d/k3screenctrl /usr/bin/k3screenctrl; do
-  #[ -f $i -a ! -x $i ]&&chmod +x $i
-  #chmod +x $i
-#done
-
 stop()
 {
   [ "${status:-0}" != "$$" ]&&killall k3screenctrl
