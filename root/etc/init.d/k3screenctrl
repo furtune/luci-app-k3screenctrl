@@ -1,0 +1,26 @@
+#!/bin/bash /etc/rc.common
+
+START=99
+STOP=99
+
+stop()
+{
+  killall k3screenctrl 2>/dev/null
+  rm -f /tmp/device_icon.log
+  rm -f /tmp/os_version
+  rm -f /tmp/weather.json
+  rm -rf /tmp/speed
+}
+
+start()
+{
+  delay=$(uci get k3screenctrl.@general[0].refresh_time 2>/dev/null)
+  max=$(uci get k3screenctrl.@general[0].screen_time 2>/dev/null)
+  k3screenctrl -d ${delay#:-1} -m ${max#:-15} &
+}
+
+restart()
+{
+  stop
+  start
+}

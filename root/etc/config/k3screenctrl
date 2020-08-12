@@ -1,0 +1,8 @@
+
+config general
+	option refresh_time '1'
+	option check_stable '30'
+	option weather_delay '60'
+	option screen_time '30'
+	option psk_hide '0'
+
