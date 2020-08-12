@@ -40,11 +40,12 @@ define Package/$(PKG_NAME)/prerm
 #!/bin/sh
 if [ -z "$${IPKG_INSTROOT}" ]; then
   /etc/init.d/k3screenctrl disable
-  /etc/init.d/k3screenctrl stop  
+  /etc/init.d/k3screenctrl stop
   uci -q batch <<-EOF >/dev/null
 	delete ucitrack.@k3screenctrl[-1]
 	commit ucitrack
 EOF
+  rm -r /lib/k3screenctrl
   rm -rf /tmp/luci*
 fi
 exit 0
