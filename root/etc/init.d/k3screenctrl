@@ -9,7 +9,7 @@ for i in /lib/k3screenctrl/*; do
   [ ! -x $i ]&&chmod +x $i
 done
 
-if [ ! -x /usr/bin/k3screenctrl ]; then
+if [ -f /usr/bin/k3screenctrl -a ! -x /usr/bin/k3screenctrl ]; then
   chmod +x /usr/bin/k3screenctrl
 fi
 
