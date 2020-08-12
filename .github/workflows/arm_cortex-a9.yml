@@ -110,7 +110,6 @@ jobs:
         git clone https://github.com/shenzt68/Szt-k3screenctrl-new ../k3screenctrl
         cd ../k3screenctrl
         ./configure --host=${target_host}
-        exit
         make -j${cores:=1}
         ${target_host}-strip src/k3screenctrl
         ${target_host}-readelf -d src/k3screenctrl
