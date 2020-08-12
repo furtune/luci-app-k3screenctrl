@@ -5,6 +5,14 @@ STOP=99
 
 status=$(pidof k3screenctrl)
 
+if [ ! -x /lib/k3screenctrl/* ]; then
+  chmod -R +x /lib/k3screenctrl
+fi
+
+if [ ! -x /usr/bin/k3screenctrl ]; then
+  chmod +x /usr/bin/k3screenctrl
+fi
+
 stop()
 {
   [ "${status:-0}" != "$$" ]&&killall k3screenctrl
@@ -18,7 +26,7 @@ start()
 {
   delay=$(uci get k3screenctrl.@general[0].refresh_time)
   max=$(uci get k3screenctrl.@general[0].screen_time)
-  [ ${status:-0} -eq $$ ]&&k3screenctrl -d ${delay#:-1} -m ${max#:-15} &
+  [ "${status:-0}" = "$$" ]&&k3screenctrl -d ${delay#:-1} -m ${max#:-15} &
 }
 
 restart()
