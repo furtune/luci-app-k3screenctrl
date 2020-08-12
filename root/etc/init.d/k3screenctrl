@@ -7,7 +7,7 @@ status=$(pidof k3screenctrl)
 
 stop()
 {
-  [ ${status:-0} -ne $$ ]&&killall k3screenctrl
+  [ "${status:-0}" != "$$" ]&&killall k3screenctrl
   rm -f /tmp/device_icon.log
   rm -f /tmp/os_version
   rm -f /tmp/weather.json
