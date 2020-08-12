@@ -27,8 +27,3 @@ restart()
   start
 }
 
-reload()
-{
-  stop
-  start
-}
