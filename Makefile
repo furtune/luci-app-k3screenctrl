@@ -41,10 +41,12 @@ define Package/$(PKG_NAME)/prerm
 if [ -z "$${IPKG_INSTROOT}" ]; then
   /etc/init.d/k3screenctrl disable
   /etc/init.d/k3screenctrl stop
+
   uci -q batch <<-EOF >/dev/null
-	delete ucitrack.@k3screenctrl[-1]
-	commit ucitrack
+    delete ucitrack.@k3screenctrl[-1]
+    commit ucitrack
 EOF
+
   rm -r /lib/k3screenctrl
   rm -rf /tmp/luci*
 fi
@@ -55,12 +57,14 @@ define Package/$(PKG_NAME)/postinst
 #!/bin/sh
 if [ -z "$${IPKG_INSTROOT}" ]; then
   for i in /lib/k3screenctrl/*; do
-    [ -f $i -a ! -x $i ]&&chmod +x $i
+    #[ -f $i -a ! -x $i ]&&chmod +x $i
+    chmod +x $i
   done
 
   for i in /etc/init.d/k3screenctrl /usr/bin/k3screenctrl; do
-    [ -f $i -a ! -x $i ]&&chmod +x $i
-  done 
+    #[ -f $i -a ! -x $i ]&&chmod +x $i
+    chmod +x $i
+  done
 
   /etc/init.d/k3screenctrl enable
   /etc/init.d/k3screenctrl restart
