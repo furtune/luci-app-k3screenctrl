@@ -36,6 +36,7 @@ o:value("30",translate("30 d"))
 o.rmempty = false
 
 o = s:option(Value, "weather_key", translate("Private Key :"))
+o.placeholder = "S50NSz27cfrFGx00R"
 
 o = s:option(Value, "weather_city", translate("City :"), translate("Example: Beijing"))
 
