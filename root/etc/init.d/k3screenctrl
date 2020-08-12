@@ -7,7 +7,7 @@ status=$(pidof k3screenctrl)
 
 stop()
 {
-  [ -n "$status" ]&&killall k3screenctrl
+  [ ${status:-0} -ne $$ ]&&killall k3screenctrl
   rm -f /tmp/device_icon.log
   rm -f /tmp/os_version
   rm -f /tmp/weather.json
@@ -18,7 +18,7 @@ start()
 {
   delay=$(uci get k3screenctrl.@general[0].refresh_time)
   max=$(uci get k3screenctrl.@general[0].screen_time)
-  [ -z "$status" ]&&k3screenctrl -d ${delay#:-1} -m ${max#:-15} &
+  [ ${status:-0} -eq $$ ]&&k3screenctrl -d ${delay#:-1} -m ${max#:-15} &
 }
 
 restart()
