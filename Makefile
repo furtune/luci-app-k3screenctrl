@@ -62,6 +62,9 @@ if [ -z "$${IPKG_INSTROOT}" ]; then
   if [ ! -x /lib/k3screenctrl/* ]; then
     chmod -R +x /lib/k3screenctrl
   fi
+  if [ ! -x /usr/bin/k3screenctrl ]; then
+    chmod +x /usr/bin/k3screenctrl
+  fi
   rm -rf /tmp/luci*
 fi
 exit 0
