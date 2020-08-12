@@ -56,8 +56,6 @@ define Package/$(PKG_NAME)/postinst
 if [ -z "$${IPKG_INSTROOT}" ]; then
   if [ ! -x /etc/init.d/k3screenctrl ]; then
     chmod +x /etc/init.d/k3screenctrl
-    /etc/init.d/k3screenctrl enable
-    /etc/init.d/k3screenctrl restart
   fi
   if [ ! -x /lib/k3screenctrl/* ]; then
     chmod -R +x /lib/k3screenctrl
@@ -65,6 +63,8 @@ if [ -z "$${IPKG_INSTROOT}" ]; then
   if [ ! -x /usr/bin/k3screenctrl ]; then
     chmod +x /usr/bin/k3screenctrl
   fi
+  /etc/init.d/k3screenctrl enable
+  /etc/init.d/k3screenctrl restart
   rm -rf /tmp/luci*
 fi
 exit 0
