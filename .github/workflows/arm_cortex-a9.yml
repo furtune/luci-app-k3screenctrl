@@ -111,14 +111,13 @@ jobs:
         cd ../k3screenctrl
         ./configure --host=${target_host}
         make -j${cores:=1}
-        exit
         ${target_host}-strip src/k3screenctrl
         ${target_host}-readelf -d src/k3screenctrl
         file src/k3screenctrl
         upx --ultra-brute --best -v src/k3screenctrl
         mkdir -p ../../root/usr/bin
         mv -f src/k3screenctrl ../../root/usr/bin
-        exit 127
+        exit
         chmod -R +x ../../root/usr/bin
         chmod -R +x ../../root/lib/k3screenctrl
         make clean
