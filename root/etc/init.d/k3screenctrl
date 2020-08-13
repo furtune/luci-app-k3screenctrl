@@ -21,7 +21,7 @@ start_service() {
   local delay=$(uci get k3screenctrl.@general[0].refresh_time)
   local max=$(uci get k3screenctrl.@general[0].screen_time)
   [ "${status:-0}" = "0" ] && {
-    procd_open_instance k3screenctrl
+    procd_open_instance
     procd_set_param command k3screenctrl
     procd_append_param command -d ${delay#:-1} -m ${max#:-15} # append command parameters
     procd_set_param respawn ${respawn_threshold:-3600} ${respawn_timeout:-5} ${respawn_retry:-5}
