@@ -1,11 +1,13 @@
 #!/bin/sh /etc/rc.common
 
+USE_PROCD=1
+
 START=99
 STOP=99
 
 status=$(pidof k3screenctrl)
 
-stop() {
+stop_service() {
   if [ "${status:-0}" != "0" ]; then
     killall k3screenctrl
     rm -f /tmp/device_icon.log
@@ -15,13 +17,28 @@ stop() {
   fi
 }
 
-start() {
-  delay=$(uci get k3screenctrl.@general[0].refresh_time)
-  max=$(uci get k3screenctrl.@general[0].screen_time)
-  [ "${status:-0}" = "0" ]&&(k3screenctrl -d ${delay#:-1} -m ${max#:-15} > /dev/null 2>&1 &)
+start_service() {
+  local delay=$(uci get k3screenctrl.@general[0].refresh_time)
+  local max=$(uci get k3screenctrl.@general[0].screen_time)
+  [ "${status:-0}" = "0" ] && {
+    procd_open_instance k3screenctrl
+    procd_set_param command k3screenctrl
+    procd_append_param command -d ${delay#:-1} -m ${max#:-15} # append command parameters
+    procd_set_param respawn ${respawn_threshold:-3600} ${respawn_timeout:-5} ${respawn_retry:-5}
+    #procd_set_param file /etc/config/k3screenctrl # /etc/init.d/your_service reload will restart the daemon if these files have changed
+    procd_set_param stdout 1 # forward stdout of the command to logd
+    procd_set_param stderr 1 # same for stderr
+    procd_set_param user root # run service as user nobody
+    procd_set_param pidfile /var/run/k3screenctrl.pid # write a pid file on instance start and remove it on stop
+    procd_close_instance
+  }
 }
 
-restart() {
-  stop
-  start
+service_triggers() {
+  procd_add_reload_trigger "k3screenctrl"
+}
+
+reload_service() {
+  stop_service
+  start_service
 }
