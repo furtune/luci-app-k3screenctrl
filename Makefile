@@ -61,7 +61,7 @@ if [ -z "$${IPKG_INSTROOT}" ]; then
   chmod -R +x /lib/k3screenctrl
 
   /etc/init.d/k3screenctrl enable
-  /etc/init.d/k3screenctrl restart
+  /etc/init.d/k3screenctrl start
 
   rm -rf /tmp/luci*
 fi
