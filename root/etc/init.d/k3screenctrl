@@ -1,0 +1,29 @@
+#!/bin/bash /etc/rc.common
+
+START=99
+STOP=99
+
+status=$(pidof k3screenctrl)
+
+stop()
+{
+  [ "${status:-0}" != "$$" ]&&killall k3screenctrl
+  rm -f /tmp/device_icon.log
+  rm -f /tmp/os_version
+  rm -f /tmp/weather.json
+  rm -rf /tmp/speed
+}
+
+start()
+{
+  delay=$(uci get k3screenctrl.@general[0].refresh_time)
+  max=$(uci get k3screenctrl.@general[0].screen_time)
+  [ "${status:-0}" = "$$" ]&&(k3screenctrl -d ${delay#:-1} -m ${max#:-15} > /dev/null 2>&1 &)
+}
+
+restart()
+{
+  stop
+  start
+}
+
