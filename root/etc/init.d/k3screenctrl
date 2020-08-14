@@ -5,31 +5,33 @@ USE_PROCD=1
 START=99
 STOP=99
 
-status=$(pidof k3screenctrl)
+status=$(pgrep k3screenctrl)
 
 stop_service() {
-  if [ "${status:-0}" != "0" ]; then
-    killall k3screenctrl
+  logger Stop the k3screenctrl ${status:-xx}
+  if [ -n "$status" ]; then
+    killall k3screenctrl 
     rm -f /tmp/device_icon.log
-    rm -f /tmp/os_version
-    rm -f /tmp/weather.json
+    #rm -f /tmp/os_version
+    #rm -f /tmp/weather.json
     rm -rf /tmp/speed
   fi
 }
 
 start_service() {
+  logger Start the k3screenctrl ${status:-xx}
   local delay=$(uci get k3screenctrl.@general[0].refresh_time)
   local max=$(uci get k3screenctrl.@general[0].screen_time)
-  [ "${status:-0}" = "0" ] && {
+  [ -z "$status" ] && {
     procd_open_instance
     procd_set_param command k3screenctrl
     procd_append_param command \
     -d ${delay#:-1} \
     -m ${max#:-15}
     procd_set_param respawn ${respawn_threshold:-3600} ${respawn_timeout:-5} ${respawn_retry:-5}
-    procd_set_param file /etc/config/k3screenctrl
-    procd_set_param stdout 1
-    procd_set_param stderr 1
+    #procd_set_param file /etc/config/k3screenctrl
+    procd_set_param stdout 0
+    procd_set_param stderr 0
     procd_set_param user root
     procd_set_param pidfile /var/run/k3screenctrl.pid
     procd_close_instance
@@ -41,6 +43,8 @@ service_triggers() {
 }
 
 reload_service() {
+  logger Reload the k3screenctrl ${status:-xx}
   stop_service
   start_service
 }
+
