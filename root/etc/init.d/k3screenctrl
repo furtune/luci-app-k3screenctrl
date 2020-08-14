@@ -29,7 +29,7 @@ start_service() {
     -d ${delay#:-1} \
     -m ${max#:-15}
     procd_set_param respawn ${respawn_threshold:-3600} ${respawn_timeout:-5} ${respawn_retry:-5}
-    #procd_set_param file /etc/config/k3screenctrl
+    procd_set_param file /etc/config/k3screenctrl
     procd_set_param stdout 0
     procd_set_param stderr 0
     procd_set_param user root
