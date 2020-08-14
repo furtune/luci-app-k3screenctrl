@@ -7,6 +7,12 @@ uci -q batch <<-EOF >/dev/null
 	commit ucitrack
 EOF
 
+general=$(uci -q get k3screenctrl.@general[-1])
+
+if [ -z "$general" ]; then
+	uci -q add k3screenctrl general
+fi
+
 rm -rf /tmp/luci*
 
 exit 0
