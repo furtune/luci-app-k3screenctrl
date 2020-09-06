@@ -100,7 +100,7 @@ jobs:
         cat > /tmp/export.sh <<EOF
         export PATH=$PATH:/usr/local/go/bin:${dirn}/${dirn1}/staging_dir/${dirn2}/bin
         export STAGING_DIR=${dirn}/${dirn1}
-EOF
+        EOF
         
     - name: SSH connection to Actions
       uses: yiguihai/debugger-action@master
