@@ -9,8 +9,8 @@ s.anonymous = true
 
 o = s:option(ListValue, "screen_time", translate("Screen time :"), translate("This time no action, the screen will close."))
 o:value("60",translate("1 Minute"))
-o:value("120",translate("2 Minute"))
-o:value("180",translate("3 Minute"))
+o:value("120",translate("2 Minutes"))
+o:value("180",translate("3 Minutes"))
 o:value("300",translate("5 Minutes"))
 o.rmempty = false
 
