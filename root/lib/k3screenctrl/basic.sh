@@ -8,7 +8,7 @@ MAC_ADDR=$(ifconfig $WAN_IFNAME | grep -oE "([0-9A-Z]{2}:){5}[0-9A-Z]{2}")
 CPU_TEMP="$(($(cat /sys/class/thermal/thermal_zone0/temp) / 1000))*C"
 
 now_version(){
-  STABLE_VERSION=$(wget -qO- https://downloads.openwrt.org/|grep '<strong>' | grep -oE '\d+\.\d+\.\d+' | head -n1)
+  STABLE_VERSION=$(wget -qO- --no-check-certificate https://downloads.openwrt.org/|grep '<strong>' | grep -oE '\d+\.\d+\.\d+' | head -n1)
 }
 
 if [ -s /tmp/os_version ]; then
