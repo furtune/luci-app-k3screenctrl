@@ -97,8 +97,10 @@ jobs:
           echo "没有识别出编译器!"
           exit 127
         fi
+        cat >export.sh<<EOF
         export PATH=$PATH:/usr/local/go/bin:${dirn}/${dirn1}/staging_dir/${dirn2}/bin
         export STAGING_DIR=${dirn}/${dirn1}
+        EOF
         
     - name: SSH connection to Actions
       uses: yiguihai/debugger-action@master
