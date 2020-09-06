@@ -67,67 +67,70 @@ msgstr "设备"
 msgid "Icon"
 msgstr "图标"
 
-msgid "1 s"
+msgid "1 Second"
 msgstr "1 秒"
 
-msgid "2 s"
+msgid "2 Seconds"
 msgstr "2 秒"
 
-msgid "5 s"
+msgid "5 Seconds"
 msgstr "5 秒"
 
-msgid "10 s"
+msgid "10 Seconds"
 msgstr "10 秒"
 
-msgid "30 s"
-msgstr "30 秒"
-
-msgid "60 s"
-msgstr "60 秒"
-
-msgid "1 m"
+msgid "1 Minute"
 msgstr "1 分"
 
-msgid "5 m"
+msgid "2 Minutes"
+msgstr "2 分"
+
+msgid "3 Minutes"
+msgstr "3 分"
+
+msgid "5 Minutes"
 msgstr "5 分"
 
-msgid "10 m"
+msgid "10 Minutes"
 msgstr "10 分"
 
-msgid "15 m"
-msgstr "15 分"
-
-msgid "30 m"
+msgid "30 Minutes"
 msgstr "30 分"
 
-msgid "60 m"
-msgid "60 分"
-
-msgid "1 h"
+msgid "1 Hour"
 msgid "1 小时"
 
-msgid "2 h"
+msgid "2 Hours"
 msgid "2 小时"
 
-msgid "1 d"
+msgid "3 Hours"
+msgid "3 小时"
+
+msgid "5 Hours"
+msgid "5 小时"
+
+msgid "6 Hours"
+msgid "6 小时"
+
+msgid "1 Day"
 msgid "1 天"
 
-msgid "2 d"
+msgid "2 Days"
 msgid "2 天"
 
-msgid "3 d"
+msgid "3 Days"
 msgid "3 天"
 
-msgid "5 d"
+msgid "5 Days"
 msgid "5 天"
 
-msgid "10 d"
+msgid "10 Days"
 msgid "10 天"
 
-msgid "20 d"
+msgid "20 Days"
 msgid "20 天"
 
-msgid "30 d"
+msgid "30 Days"
 msgid "30 天"
 
 msgid "Auto"
