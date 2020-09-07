@@ -35,7 +35,7 @@ fi
 echo K3 #型号
 echo ${CPU_TEMP:=0} #H/W(heardware)改温度
 if [ -n "$STABLE_VERSION" -a  -n "$VERSION" ]; then #软件版本
-  if [ "$VERSION" != "$STABLE_VERSION" ];
+  if [ "$VERSION" != "$STABLE_VERSION" ]; then
     echo "New ! $STABLE_VERSION"
   fi
 else
