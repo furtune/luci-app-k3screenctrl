@@ -34,10 +34,12 @@ fi
   
 echo K3 #型号
 echo ${CPU_TEMP:=0} #H/W(heardware)改温度
-if [ "${VERSION:=0}" = "${STABLE_VERSION:=1}" ]; then #软件版本
-  echo $VERSION
+if [ -n "$STABLE_VERSION" -a  -n "$VERSION" ]; then #软件版本
+  if [ "$VERSION" != "$STABLE_VERSION" ];
+    echo "New ! $STABLE_VERSION"
+  fi
 else
-  echo "New ! $STABLE_VERSION"
+  echo $VERSION
 fi
 echo $STABLE_VERSION #最新openwrt版本
 echo $MAC_ADDR #MAC地址
