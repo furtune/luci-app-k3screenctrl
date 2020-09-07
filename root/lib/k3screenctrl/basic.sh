@@ -37,6 +37,8 @@ echo ${CPU_TEMP:=0} #H/W(heardware)改温度
 if [ -n "$STABLE_VERSION" -a  -n "$VERSION" ]; then #软件版本
   if [ "$VERSION" != "$STABLE_VERSION" ]; then
     echo "New ! $STABLE_VERSION"
+  else
+    echo ${VERSION:-0}
   fi
 else
   echo ${VERSION:-0}
