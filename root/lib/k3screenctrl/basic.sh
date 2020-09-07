@@ -39,7 +39,7 @@ if [ -n "$STABLE_VERSION" -a  -n "$VERSION" ]; then #软件版本
     echo "New ! $STABLE_VERSION"
   fi
 else
-  echo $VERSION
+  echo ${VERSION:-0}
 fi
-echo $STABLE_VERSION #最新openwrt版本
+echo ${STABLE_VERSION:-0} #最新openwrt版本
 echo $MAC_ADDR #MAC地址
